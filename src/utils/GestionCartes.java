@@ -3,7 +3,6 @@ package utils;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -64,31 +63,23 @@ public abstract class GestionCartes extends Carte {
 		return rassemble;
 	}
 
-	private static <T> boolean presence(T elem, ListIterator<T> it) {
-		while (it.hasNext()) {
-			T elemTest = it.next();
-			System.out.println("elem2 = " + elemTest);
-			if (elem.equals(elemTest))
-				return true;
+	private static <T> boolean presence(List<T> l, T elem, int indice) {
+		for(ListIterator<T> it = l.listIterator(indice); it.hasNext(); ) {
+			if(it.next().equals(elem)){
+				return false;
+			}
 		}
-		return false;
+		return true;
 	}
-	
 
 	public static <T> boolean verifierRassemblement(List<T> liste) {
-		T elemPrec = liste.get(0);
-		boolean verifie = false;
-		for(ListIterator<T> it = liste.listIterator(1); it.hasNext(); ) {
+		int indice = 0;
+		for (ListIterator<T> it = liste.listIterator(); it.hasNext();) {
+			T elemPrec = it.next();
 			T elem = it.next();
-			System.out.println("elem1 = " + elem);
-			if(!elem.equals(elemPrec)) {
-				if(!verifie) {
-					if(presence(elem, liste.listIterator(it.previousIndex())))
-							return false;
-				}
-				verifie = !verifie;
-			}
-			elemPrec = elem;
+			indice++;
+			if(!elem.equals(elemPrec) && presence(liste, elem, indice))
+				return false;
 		}
 		return true;
 	}
