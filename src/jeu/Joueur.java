@@ -6,12 +6,11 @@ import cartes.Carte;
 
 public class Joueur extends Carte {
 	String nom;
-	ZoneDeJeu zone;
-	MainJoueur main;
+	ZoneDeJeu zone = new ZoneDeJeu();
+	MainJoueur main = new MainJoueur();
 	
-	public Joueur(String nom, ZoneDeJeu zone) {
+	public Joueur(String nom) {
 		this.nom = nom;
-		this.zone = zone;
 	}
 	
 	public void donner(Carte carte) {
@@ -28,6 +27,10 @@ public class Joueur extends Carte {
 		Carte carte = sabot.piocher();
 		donner(carte);
 		return carte;
+	}
+	
+	public int donnerKmParcourus() {
+		return zone.donnerKmParcourus();
 	}
 	
 	@Override

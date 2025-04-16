@@ -6,6 +6,15 @@ public class Borne extends Carte {
 	public Borne(Integer km) {
 		this.km = km;
 	}
+	
+	public int getKm() {
+		return km;
+	}
+	
+	@Override
+	public int hashCode() {
+		return 31*km;
+	}
 
 	@Override
 	public String toString() {
@@ -16,4 +25,5 @@ public class Borne extends Carte {
 	public boolean equals(Object obj) {
 		return super.equals(obj) && km == ((Borne) obj).km;
 	}
+
 }

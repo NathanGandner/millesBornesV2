@@ -1,12 +1,13 @@
 package jeu;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
 import cartes.Carte;
 
 public class MainJoueur extends Carte {
-	private List<Carte> main;
+	private List<Carte> main = gnew ArrayList<>();
 
 	public void prendre(Carte carte) {
 		main.add(carte);
